@@ -1,0 +1,4 @@
+<% form_for @admin, :as => :admin, :url=>"/admin/"+@admin.id.to_s, :html=>{:method=>:put} do |form| %>
+	<%= form.text_field :email %>
+	<%= submit_tag "update" %>
+<% end %>

@@ -1,0 +1,12 @@
+<%= form_tag :action=> "login" %>
+
+   <% if flash[:message] %>
+	   <%= flash[:message] %>
+   <% end %>
+  <label for="team_login">Login:</label><br/>
+  <%= text_field "user", "name", :size => 20 %>
+  <%= password_field "user", "password", :size => 20 %>
+
+<%= submit_tag "Submit" %>
+
+<%= form_tag %>

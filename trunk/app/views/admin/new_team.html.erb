@@ -1,0 +1,5 @@
+<%= form_for @new_team, :url=>teams_path, :html=>{:method=>:post} do |form| %>
+	Team Name:
+	<%= form.text_field :name %>
+	<%= submit_tag "Save" %>
+<% end %>

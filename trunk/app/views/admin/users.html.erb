@@ -1,0 +1,60 @@
+<script src="/javascripts/jquery.js" type="text/javascript"></script>
+<link href="/stylesheets/facebox.css" media="screen" rel="stylesheet" type="text/css"/>
+<script src="/javascripts/facebox.js" type="text/javascript"></script>
+<script type="text/javascript"> 
+	jQuery(document).ready(function($) {
+			$('a[rel*=facebox]').facebox() 
+			})
+</script> 
+<% if @type == "admin" %>
+	<table id ="hor-minimalist-b">
+		<thead><tr>
+				<th scope ="col" id="Student">Student</th>
+				<th scope ="col" id="Email">Email</th>
+				<th scope ="col" id="Team">Team</th>
+				<th scope ="col" id="Delete"></th>
+		</tr></thead>
+		<tbody>
+			<% @students.each do |student| %>
+				<tr>
+					<td><%= student.firstname %> <%= student.lastname %></td>
+					<td><%= link_to student.email, "/students/edit_email/" + student.id.to_s, :rel => "facebox" %></td>
+					<td><%= link_to student.team.name, "/students/edit_team/" + student.id.to_s, :rel => "facebox" %></td>
+					<td><%= link_to image_tag("facebox/closelabel.png", :class => "close"), "/students/delete/"+student.id.to_s, :rel => "facebox" %></td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+
+	<table id ="hor-minimalist-b"> 
+		<thead><tr> <th scope ="col" id="Admin">Admin</th>
+				<th scope ="col" id="Admin">Email</th></tr>
+		</thead>
+		<tbody>
+			<% @admins.each do |admin| %>
+				<tr>
+					<td><%= admin.name %></td>
+					<td><%= link_to admin.email, "/students/edit_admin_email/" + admin.id.to_s, :rel => "facebox" %></td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>	
+
+<% elsif @type == "team" %>
+	<table id ="hor-minimalist-b">
+		<thead><tr>
+				<th scope ="col" id="Student">Student</th>
+				<th scope ="col" id="Email">Email</th>
+				<th scope ="col" id="Team">Team</th>
+		</tr></thead>
+		<tbody>
+			<% @students.each do |student| %>
+				<tr>
+					<td><%= student.firstname %> <%= student.lastname %></td>
+					<td><%= link_to student.email, "/students/edit_email/" + student.id.to_s, :rel => "facebox" %></td>
+					<td><%= student.team.name %></td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+<% end %>

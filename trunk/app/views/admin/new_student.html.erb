@@ -1,0 +1,12 @@
+<%= form_for @new_student, :url=>students_path, :html=>{:method=>:post} do |form| %>
+	First Name:
+	<%= form.text_field :firstname %>
+	<br/>
+	Last Name:
+	<%= form.text_field :lastname %>
+	<br/>
+	Email:
+	<%= form.text_field :email %>
+	<%= collection_select(:student, :team_id, Team.all, :id, :name) %>
+	<%= submit_tag "Save" %>
+<% end %>

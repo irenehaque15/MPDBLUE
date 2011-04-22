@@ -1,0 +1,7 @@
+<%= form_for @new_portfolio, :url=>"/portfolios", :html=>{:method=>:post} do |form| %>
+	Portfolio Name:
+	<%= text_field(:portfolio, :name) %>
+	Team:
+	<%= collection_select(:portfolio, :team_id, Team.all, :id, :name) %>
+	<%= submit_tag "Save" %>
+<% end %>

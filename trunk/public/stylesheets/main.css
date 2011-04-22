@@ -1,0 +1,245 @@
+/* 
+    Document   : main style
+    Author     : Bala
+    Description: Purpose of the stylesheet follows.
+*/
+
+    body 	{
+      padding: 0;
+      max-width: 100%;
+      color: black;
+      background-color: white;
+      font-family: tahoma, Helvetica , x-small Verdana, Arial, sans-serif;
+      font-size: 62.5%;
+    }
+
+    .section {
+        min-width: 440px;
+    }
+    
+    .section .section-inner {
+        padding: 10px 20px;
+    }
+
+    .section-portfolio {
+        width: 200px;
+        height: 90%;
+    }
+
+    .section-portfolio .section-inner-portfolio {
+        padding: 10px 20px;
+    }
+
+    .section-portfolio-title {
+        height: 200px;
+        width: 250px;
+    }
+
+    .section-portfolio-title .section-inner-portfolio-title {
+        padding: 10px 20px;
+    }
+
+    .section-portfolio-main {
+/*        top: 10px;*/
+        height: 90%;
+        width: 470px;
+    }
+
+    .section-portfolio-main .section-inner-portfolio-main {
+/*        padding: 10px 20px;*/
+    }
+
+    .thumbwrapper {
+	float: left;
+	height: 175px;
+	width: 175px;
+	background: lightgrey;
+	margin: 8px;
+	text-align: center;
+    }
+   
+   .thumbwrapper:hover {
+	  background: grey;
+ } 
+    .thumbwrapperPopUp {
+	float: left;
+	height: 115px;
+	width: 140px;
+	background: #F0EEE0;
+	margin: 8px;
+	text-align: center;
+    }
+
+.popupligthbox{
+        cursor: pointer;
+    }
+
+
+    .imgholder {
+        height:220px;
+        width:220px;
+    }
+
+    .imgtag {
+        height:155px;
+        width:155px;
+        margin-top:10px;
+        border:2px solid silver;
+        opacity:1;
+        cursor:pointer;
+    }
+
+    .imgtag:hover {
+        border:2px solid grey;
+        opacity:0.8;
+    }
+
+    .imgtagPopUp {
+        height:110px;
+        width:135px;
+/*        height:135px;
+        width:155px;*/
+        margin-top:3px;
+        border:2px solid silver;
+        opacity:1;
+        cursor:pointer;
+    }
+
+    .imgtagPopUp:hover {
+        border:2px solid grey;
+        opacity:0.8;
+    }
+
+    .imgtag-title {
+        height:155px;
+        width:155px;
+        margin-top:10px;
+        border:2px solid silver;
+    }
+    
+    .thumbwrapper-main {
+	float: left;
+/*	height: 425px;*/
+	height: 75%;
+/*	width: 425px;*/
+	width: 95%;
+/*	padding: 5px;*/
+	background: #F0EEE0;
+	margin: 8px;
+	text-align: center;
+    }
+
+    .imgholder-main {
+/*        height:450px;*/
+        height:85%;
+        width:450px;
+    }
+
+    .imgtag-main {
+/*        height:400px;*/
+        height:100%;
+        width:100%;
+/*        width:400px;*/
+/*        margin-top:10px;*/
+        border:2px solid silver;
+    }
+
+    .portfolio-name {
+        font-size:30px;
+        color:grey;
+        margin-top:200px;
+        margin-left:10px;
+        text-align:center;
+/*        margin-top:70px;
+        margin-left:200px;*/
+    }
+
+    .header {
+        font-size:20px;
+        color:grey;
+        margin-top: 70px;
+        position: absolute;
+    }
+
+    .header {
+        font-size:20px;
+        color:grey;
+        margin-top: 70px;
+        position: absolute;
+    }
+
+    #lightbox{
+/*	background-color:#333;*/
+	background-color:white;
+	padding: 5px;
+        border: 3px solid grey;
+    }
+
+    #lightboxDetails{
+        font-size: 0.8em;
+        padding-top: 0.4em;
+    }
+
+    #lightboxCaption{
+        float: left;
+    }
+
+    #keyboardMsg{
+        float: right;
+    }
+
+    #lightbox img{
+        border: none;
+        clear: both;
+    }
+
+    #overlay img{
+        border: none;
+    }
+
+    #overlay{
+        background-color:black;
+        opacity:0.2;
+/*        background-image: url(/images/overlay.png);*/
+    }
+
+    * html #overlay{
+/*        background-color: #333;*/
+        background-color:black;
+        opacity:0.2;
+        background-image:url(/images/blank.gif);
+        filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/overlay.png", sizingMethod="scale");
+    }
+    
+    .closeButton {
+        margin-top: 10px;
+        margin-right: 5px;
+        cursor:pointer;
+    }
+
+    .closeButton:hover {
+        opacity:0.8;
+    }
+
+    .nextButton {
+        margin-top:240px;
+        width:70px;
+        height:100px;
+        cursor:pointer;
+    }
+
+    .nextButton:hover {
+        opacity:0.8;
+    }
+
+    .backButton {
+        margin-top:240px;
+        width:70px;
+        height:100px;
+        cursor:pointer;
+    }
+
+    .backButton:hover {
+        opacity:0.8;
+    }
+

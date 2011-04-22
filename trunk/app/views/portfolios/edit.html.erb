@@ -1,0 +1,40 @@
+ <%= params[:message] %>
+
+<h1>This Porfolio is <%= @portfolio.status %></h1>
+
+<%= link_to "Preview", portfolio_path(@portfolio) %>
+
+<% if @portfolio.status == 'open' %>
+	<%= button_to "Lock and Submit", {:action => "update", :id => @portfolio.id, :status => "pending"}, :confirm => "This will notify the admin to review and approve this portfolio.", :method=>:put %>
+
+
+	<%= form_for @portfolio, :as => :portfolio, :url=>portfolio_path(@portfolio), :html=>{:method=>:put} do |form| %>
+		<label for="contact_link">Contact Link:</label> : 
+		<%= form.text_field :contact_link %>	
+		<label for="name">Name</label> : 
+		<%= form.text_field :name %>	
+		<%= submit_tag "Update" %>
+	<% end %>
+	<br/>	
+	<%= link_to "Upload Images", new_image_path %>
+	<%= link_to "Upload PDFs", new_document_path %>
+	<table>
+		<% @portfolio.images.each do |image| %>
+			<tr><td><%= image_tag image.path, :class => "imgtag lightbox", :name => image.path %></td>
+				<td><%= form_for image, :as => :image, :url=>image_path(image), :html=>{:method => :put} do |form| %>
+						<%= form.text_area :caption, :rows =>"5" %> 
+						<%= submit_tag "Update" %>
+					<% end %>
+					<%= button_to 'delete', image_path(image), :confirm => 'Are you sure?', :method => :delete %></td></tr>
+		<% end %>
+	</table>
+
+
+	<% @portfolio.documents.each do |doc| %>
+		<%= doc.name %>
+		<%= doc.path %>
+		<%= button_to 'delete', document_path(doc), :confirm => 'Are you sure?', :method => :delete %>
+	<% end %>
+
+
+<% end %>

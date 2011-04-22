@@ -1,0 +1,8 @@
+<% if @portfolio.status == "pending" %>
+	<%= button_to "Approve", {:controller => "portfolios", :action => "update", :id => @portfolio.id, :status => "approved"}, :method=>:put %>
+	<%= button_to "Reject", {:controller => "portfolios", :action => "update", :id => @portfolio.id, :status => "open"}, :method=>:put %>
+<% elsif @portfolio.status == "approved" %>
+	<%= button_to "Archive", {:controller => "portfolios", :action => "update", :id => @portfolio.id, :status => "open"}, :method=>:put %>
+<% elsif @portfolio.status == "open" %>
+	<%= button_to "Submit", {:controller => "portfolios", :action => "update", :id => @portfolio.id, :status => "pending"}, :method=>:put %>
+<% end %>

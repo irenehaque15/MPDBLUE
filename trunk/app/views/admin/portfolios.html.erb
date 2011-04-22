@@ -1,0 +1,88 @@
+<script src="/javascripts/jquery.js" type="text/javascript"></script>
+<link href="/stylesheets/facebox.css" media="screen" rel="stylesheet" type="text/css"/>
+<script src="/javascripts/facebox.js" type="text/javascript"></script>
+<script type="text/javascript"> 
+    jQuery(document).ready(function($) {
+            $('a[rel*=facebox]').facebox() 
+            })
+</script>
+
+<script src="/javascripts/popup.js" type="text/javascript"></script>
+
+<% if @type=="admin" %> 
+
+    <table id="hor-minimalist-b">
+        <thead><tr>
+                <th scope="col" id="Team">Team</th>
+                <th scope="col" id="Portfolio Preview">Portfolio Preview</th>
+                <th scope="col" id="Portfolio Status">Status</th>
+        </tr></thead>
+        <tbody>
+            <% @pending.each do |portfolio| %>
+                <tr>
+                    <td><%= link_to portfolio.team.name, student_path(portfolio.team.id), :rel =>"facebox" %></td>
+                                        <td><%= content_tag :div, :id => portfolio.id, :class => "popupligthbox", :name => portfolio.id do %>Preview<% end %></td>
+                    <td><%= link_to portfolio.status, "/admin/edit_status/" + portfolio.id.to_s, :rel =>"facebox" %></td>
+                </tr>
+            <% end %>
+            <% @approved.each do |portfolio| %>
+                <tr>
+                    <td><%= link_to portfolio.team.name, student_path(portfolio.team.id), :rel =>"facebox" %></td>
+                                        <td><%= content_tag :div, :id => portfolio.id, :class => "popupligthbox", :name => portfolio.id do %>Preview<% end %></td>
+                    <td><%= link_to portfolio.status, "/admin/edit_status/" + portfolio.id.to_s, :rel =>"facebox" %></td>
+                </tr>
+            <% end %>
+
+            <% @open.each do |portfolio| %>
+                <tr>
+                    <td><%= link_to portfolio.team.name, student_path(portfolio.team.id), :rel =>"facebox" %></td>
+                                        <td><%= content_tag :div, :id => portfolio.id, :class => "popupligthbox", :name => portfolio.id do %>Preview<% end %></td>
+                    <td><%= portfolio.status %></td>
+                </tr>
+            <% end %>
+
+
+        </tbody>
+    </table>
+<% elsif @type =="team" %>
+
+    <table id="hor-minimalist-b">
+        <thead><tr>
+                <th scope="col" id="Name">Name</th>
+                <th scope="col" id="Status">Status</th>
+                <th scope="col" id="Preview">Preview</th>
+                <th scope="col" id="Edit">Edit</th>
+        </tr></thead>
+        <tbody>
+            <% @open.each do |portfolio| %>
+            <tr>
+                <td><%= portfolio.name %></td>
+                <td><%= link_to portfolio.status, "/admin/edit_status/"+portfolio.id.to_s, :rel =>"facebox" %></td>
+                <td><%= content_tag :div, :id => portfolio.id, :class => "popupligthbox", :name => portfolio.id do %>Preview<% end %></td>
+                <td><%= link_to "Edit", "/admin/edit_portfolio/"+portfolio.id.to_s %></td>
+            </tr>
+            <% end %>    
+
+            <% @pending.each do |portfolio| %>
+            <tr>
+                <td><%= portfolio.name %></td>
+                <td><%= portfolio.status %></td>
+                                <td><%= content_tag :div, :id => portfolio.id, :class => "popupligthbox", :name => portfolio.id do %>Preview<% end %></td>
+                <td></td>
+            </tr>
+            <% end %>
+
+            <% @approved.each do |portfolio| %>
+            <tr>
+                <td><%= portfolio.name %></td>
+                <td><%= portfolio.status %></td>
+                                <td><%= content_tag :div, :id => portfolio.id, :class => "popupligthbox", :name => portfolio.id do %>Preview<% end %></td>
+                <td></td>
+            </tr>
+            <% end %>
+
+        </tbody>
+    </table>
+
+<% end %>
+

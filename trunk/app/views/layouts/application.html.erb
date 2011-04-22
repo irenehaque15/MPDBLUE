@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>394 BLUE</title>
+		<%= stylesheet_link_tag :all %>
+		<%= javascript_include_tag :all %>
+		<%= csrf_meta_tag %>
+	</head>
+	<body>
+		<div class ="container_12">
+			<img src="/images/header.jpg" width="960px"></img>
+		</div>
+		<div id ="navigation-extend" class="<%= withsecondary? %>">
+			<a name ="navigation" id ="navigation"></a>
+			<div id ="primary-links-extend">
+				<div id="primary-links" class ="container-12 clearfix">
+					<div class="grid-12">
+						<ul class = "links primary-links">
+							<li class="menu-522 first <%= home?%>"><%= link_to "HOME", "/", :class=> home? %></li>
+							<% if user? == 'false' %>
+								<li class="menu-522 last <%= current_class?("/login") %>"><%= link_to "LOGIN", "/login" , :class=> current_class?("/login")%></li>
+							<% elsif user? == 'true' %>
+								<li class="menu-522 <%= current_class?("/admin/portfolios") %>"><%= link_to "manage portfolios", "/admin/portfolios", :class=> current_class?("/admin/portfolios")%></li>
+								<li class="menu-522 <%= current_class?("/admin/users") %>"><%= link_to "manage users", "/admin/users", :class=> current_class?("/admin/users")%></li>
+								<li class="menu-522 last <%= current_class?("/logout") %>"><%= link_to "LOGout", "/logout" , :class=> current_class?("/logout")%></li>
+							<% end %>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<% if user? == 'true' %>
+				<% if home? == '' %>
+
+					<% if admin? == 'true' %>
+						<div id = "secondary-links-extend">
+							<div id = "secondary-links" class="container-12 clearfix">
+								<div class="grid-12">
+									<ul class = "links secondary-links">
+										<%if mng_port? == 'true' %>
+											<li class = "menu-1056 first <%= current_class?("/admin/portfolios") %>"><%= link_to "view/edit portfolios", "/admin/portfolios", :class=> current_class?("/admin/portfolios")%></li>
+											<li class = "menu-1056 last <%= current_class?("/admin/portfolios/new_portfolio_team") %>"><%= link_to "add portfolio", "/admin/portfolios/new_portfolio_admin", :class=> current_class?("/admin/portfolios/new_portfolio_admin")%></li>
+										<%elsif mng_user? == 'true'%>
+											<li class = "menu-1056 first <%= current_class?("/admin/users") %>"><%= link_to "view/edit students", "/admin/users", :class=> current_class?("/admin/users")%></li>
+											<li class = "menu-1056 <%= current_class?("/admin/users/new_student") %>"><%= link_to "add student", "/admin/users/new_student", :class=> current_class?("/admin/users/new_student")%></li>
+											<li class = "menu-1056 <%= current_class?("/admin/users/new_team") %>"><%= link_to "add team", "/admin/users/new_team", :class=> current_class?("/admin/users/new_team")%></li>
+											<li class = "menu-1056 last<%= current_class?("/admin/users/upload_csv") %>"><%= link_to "upload csv", "/admin/users/upload_csv", :class=> current_class?("/admin/users/upload_csv")%></li>
+
+										<% end %>
+									</ul>
+								</div>
+							</div>
+						</div>
+
+
+					<% elsif team? == 'true' %>
+						<%if mng_port? == 'true' %>
+							<div id = "secondary-links-extend">
+								<div id = "secondary-links" class="container-12 clearfix">
+									<div class="grid-12">
+										<ul class = "links secondary-links">
+											<li class = "menu-1056 first <%= current_class?("/admin/portfolios") %>"><%= link_to "view portfolios", "/admin/portfolios", :class=> current_class?("/admin/portfolios")%></li>
+											<li class = "menu-1056 last <%= current_class?("/admin/portfolios/new_portfolio_team") %>"><%= link_to "add portfolio", "/admin/portfolios/new_portfolio_team", :class=> current_class?("/admin/portfolios/new_portfolio_team")%></li>
+
+										</ul>
+									</div>
+								</div>
+							</div>
+						<% end %>
+					<% end %>
+				<% end %>
+			<% end %>
+		</div>
+
+		<div class ="container_12" style="min-height:500px;">
+
+			<%= yield %>
+		</div>
+		<br/>
+		<br/>
+
+		<div class ="container_12">
+
+			<div class ="grid_1 alpha">
+				<br> 
+				<a href="http://www.northwestern.edu/"><img src="/images/nw_logo.jpg" alt="" style="width:130px;height:78px;border:0;"></a>
+
+			</div>
+			<div class ="grid_11 omega">
+				<br/>
+				<br/>
+				<p style="line-height:100%; text-align:right; color:#666; font-size:16px;" > &copy; 2008 Northwestern University - McCormick School of Engineering and Applied Science all rights reserved.<br>
+				2133 N. Sheridan Road, Evanston, IL 60208 | Phone: 847.467.3365  | Email: <a href="mailto:mpd@northwestern.edu" style="color: #666;">mpd@northwestern.edu</a><br>
+				<a href="http://www.mccormick.northwestern.edu/" target="_blank" style="color:  #666;">McCormick Home</a>  | <a href="http://mpd.northwestern.edu/legal.php" style="color:  #666; ">Legal and Policy Statements</a></p>
+
+			</div>
+		</div>
+
+	</body>
+</html>

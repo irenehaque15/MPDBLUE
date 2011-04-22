@@ -1,0 +1,14 @@
+
+<br/>
+
+            <% @portfolioids = Array.new(@approved.length) %>
+            <% @cntArr = 0 %>
+            <% @approved.each do |portfolio| %>
+                <% @portfolioids[@cntArr] = portfolio.id %>
+                <% @cntArr = @cntArr + 1 %>
+            <% end %>
+            <% @approved.each do |portfolio| %>
+                <%= content_tag :div, :class => "thumbwrapper" do %>
+                    <%= image_tag portfolio.images.first.path, :id => portfolio.id, :name => @portfolioids, :class => "imgtag lightbox" %>
+                <% end %>
+            <% end %>

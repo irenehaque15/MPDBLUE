@@ -1,0 +1,19 @@
+
+<h1><%= @type%> Page</h1>
+<%= @user.name%> is logged in.
+<%= link_to "Logout", logout_url %>
+<br/>
+<br/>
+
+<% if @type == "admin" %>
+	<a href="/admin/users">Manage Users</a>
+	<br/><br/>
+	<a href="/admin/portfolios">Manage Portfolios</a>
+
+<% elsif @type == "team" %>
+	<%= link_to "Edit Portfolio", edit_portfolio_path(@portfolio) %>
+	<br/><br/>
+	<a href="">Change Team Password (not working)</a>
+<% end %>
+
+<br/><br/>
