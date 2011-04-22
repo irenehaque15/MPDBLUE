@@ -59,8 +59,18 @@
     }
    
    .thumbwrapper:hover {
-	  background: grey;
- } 
+        background: grey;
+    }
+
+    .thumbwrapperPopUpTitle {
+	float: left;
+	height: 175px;
+	width: 175px;
+	background: lightgrey;
+	margin: 8px;
+	text-align: center;
+    }
+
     .thumbwrapperPopUp {
 	float: left;
 	height: 115px;
@@ -122,7 +132,7 @@
 /*	height: 425px;*/
 	height: 75%;
 /*	width: 425px;*/
-	width: 95%;
+	width: 92%;
 /*	padding: 5px;*/
 	background: #F0EEE0;
 	margin: 8px;
@@ -215,17 +225,31 @@
         margin-top: 10px;
         margin-right: 5px;
         cursor:pointer;
+        width: 40px;
+        opacity:0.2;
     }
 
     .closeButton:hover {
         opacity:0.8;
     }
 
+    .popupButton {
+        cursor:pointer;
+        width: 40px;
+        opacity:0.2;
+    }
+
+    .popupButton:hover {
+        opacity:0.8;
+    }
+
     .nextButton {
-        margin-top:240px;
+        margin-top:190px;
         width:70px;
         height:100px;
         cursor:pointer;
+        opacity:0.2;
+        float:right;
     }
 
     .nextButton:hover {
@@ -237,9 +261,21 @@
         width:70px;
         height:100px;
         cursor:pointer;
+        opacity:0.2;
     }
 
     .backButton:hover {
         opacity:0.8;
     }
 
+    .popupligthbox{
+        cursor: pointer;
+    }
+
+    .disabled-slider {
+        cursor: default;
+    }
+
+    .selected-slider {
+        cursor: pointer;
+    }

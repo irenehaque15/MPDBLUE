@@ -22,7 +22,7 @@
 
 // If you would like to use a custom loading image or close button reference them in the next two lines.
 var loadingImage = 'images/loading.gif';
-var closeButton = 'images/x.png';
+var closeButton = 'images/close.png';
 
 onClickImgHandler = function(event) {
     document.getElementById("mainPortfolioImg").innerHTML = "<img alt='Img1' class='imgtag-main' src='" + event.id + "' >";
@@ -33,6 +33,37 @@ onCloseHandler = function () {
     hideLightbox();
     return false;
 }
+
+
+// Functions to scroll between images in the thumbnail column
+    var getListWidth = function() {
+        return $("#slider-ul li").length / 5 * 150;
+    }
+
+    onTopClick = function() {
+        var ul = $("#slider-ul");
+        if( parseInt(ul.css('marginTop'), 10) < 0 ) {
+            $("#slider-top").removeClass("disabled-slider");
+            $("#slider-ul").animate({
+                'marginTop':'+=150'
+            });
+        }
+    }
+
+    onBottomClick = function() {
+        var ul = $("#slider-ul");
+        if( parseInt(ul.css('marginTop'), 10) > -1*(getListWidth()+150) ) {
+            $("#slider-botton").removeClass("disabled-slider");
+            $("#slider-ul").animate({
+                'marginTop':'-=150'
+            });
+
+        } else {
+            ul.animate({
+                'marginTop':'0'
+            });
+        }
+    }
 
 //
 // getPageScroll()
@@ -67,7 +98,7 @@ function getPageSize() {
     if (window.innerHeight && window.scrollMaxY) {
         xScroll = document.body.scrollWidth;
         yScroll = window.innerHeight + window.scrollMaxY;
-        
+
     } else if (document.body.scrollHeight > document.body.offsetHeight) { // all but Explorer Mac
         xScroll = document.body.scrollWidth;
         yScroll = document.body.scrollHeight;
@@ -81,7 +112,7 @@ function getPageSize() {
     if (self.innerHeight) {	// all except Explorer
         windowWidth = self.innerWidth;
         windowHeight = self.innerHeight;
-        
+
     } else if (document.documentElement && document.documentElement.clientHeight) { // Explorer 6 Strict Mode
         windowWidth = document.documentElement.clientWidth;
         windowHeight = document.documentElement.clientHeight;
@@ -94,7 +125,7 @@ function getPageSize() {
     // for small pages with total height less then height of the viewport
     if(yScroll < windowHeight) {
         pageHeight = windowHeight;
-        
+
     } else {
         pageHeight = yScroll;
     }
@@ -134,7 +165,7 @@ function pause(numberMillis) {
 function getKey(e){
     if (e == null) { // ie
         keycode = event.keyCode;
-        
+
     } else { // mozilla
         keycode = e.which;
     }
@@ -195,16 +226,17 @@ function showLightbox(objLink) {
     var arrayPageSize = getPageSize();
     var arrayPageScroll = getPageScroll();
 
-    // center loadingImage if it exists
-    if (objLoadingImage) {
-        objLoadingImage.style.top = (arrayPageScroll[1] + ((arrayPageSize[3] - 35 - objLoadingImage.height) / 2) + 'px');
-        objLoadingImage.style.left = (((arrayPageSize[0] - 20 - objLoadingImage.width) / 2) + 'px');
-        objLoadingImage.style.display = 'block';
-    }
-
     // set height of Overlay to take up whole page and show
     objOverlay.style.height = (arrayPageSize[1] + 'px');
     objOverlay.style.display = 'block';
+    
+    // center loadingImage if it exists
+    if (objLoadingImage) {
+        objLoadingImage.style.top = "200px";//(arrayPageScroll[1] + ((arrayPageSize[3] - 35 - objLoadingImage.height) / 2) + 'px');
+        objLoadingImage.style.left = "500px";//(((arrayPageSize[0] - 20 - objLoadingImage.width) / 2) + 'px');
+        objLoadingImage.style.display = 'block';
+    }
+
 
 
 //    if (portfolioArr[0]) {
@@ -240,7 +272,7 @@ function showLightbox(objLink) {
 //    }
 
     var portfolioArr;
-    
+
     if (objLink == -1) {
         objLink = document.getElementsByClassName("nextButton")[0];
         portfolioArr = objLink.name.split(",");
@@ -255,7 +287,7 @@ function showLightbox(objLink) {
     } else {
         portfolioArr = objLink.id;
     }
-    
+
     objLightbox.name = objLink.id;
     objLightbox.portfolioArr = portfolioArr;
     if (portfolioArr.indexOf(objLink.id) < portfolioArr.length - 1) {
@@ -284,21 +316,20 @@ function showLightbox(objLink) {
                 document.getElementsByClassName("nextButton")[0].name = objLightbox.portfolioArr;
                 document.getElementsByClassName("backButton")[0].id = objLightbox.prevPortfolio;
                 document.getElementsByClassName("backButton")[0].name = objLightbox.portfolioArr;
+                if (objLoadingImage) {
+                    objLoadingImage.style.display = 'none';
+                }
+
+                objLightbox.style.display = 'block';
 
             } else {
-                alert("Go back");
+                alert("Error occurred connecting to server.");
             }
         }
     }
 
     xmlhttp.open("GET", "/portfolios/" + objLightbox.name, true);
     xmlhttp.send();
-
-    if (objLoadingImage) {
-        objLoadingImage.style.display = 'none';
-    }
-
-    objLightbox.style.display = 'block';
 
     // preload image
 //    imgPreload = new Image();
@@ -431,7 +462,7 @@ function initLightbox() {
     anchors = document.getElementsByClassName("popupligthbox");
 
     // loop through all anchor tags
-    for (var i=0; i<anchors.length; i++) {
+    for (i=0; i<anchors.length; i++) {
         anchor = anchors[i];
         anchor.onclick = function () {
             showLightbox(this);
@@ -487,7 +518,7 @@ function initLightbox() {
         objLoadingImage.src = loadingImage;
         objLoadingImage.setAttribute('id','loadingImage');
         objLoadingImage.style.position = 'absolute';
-        objLoadingImage.style.zIndex = '150';
+        objLoadingImage.style.zIndex = '500';
         objLoadingImageLink.appendChild(objLoadingImage);
 
         imgPreloader.onload=function() {};	//	clear onLoad, as IE will flip out w/animated gifs
@@ -502,13 +533,14 @@ function initLightbox() {
     objLightbox.setAttribute('id','lightbox');
     objLightbox.style.display = 'none';
     objLightbox.style.position = 'absolute';
-    objLightbox.style.left = '25px';
-//    objLightbox.style.width = '1275px';
-    objLightbox.style.width = '95%';
-//    objLightbox.style.height = '500px';
-    objLightbox.style.height = '90%';
+    objLightbox.style.left = '50px';
+    objLightbox.style.width = '1200px';
+//    objLightbox.style.width = '95%';
+    objLightbox.style.height = '500px';
+//    objLightbox.style.height = '90%';
     objLightbox.style.zIndex = '100';
     objLightbox.style.marginTop = '7px';
+    objLightbox.style.overflow = "auto";
     objBody.insertBefore(objLightbox, objOverlay.nextSibling);
 
     // create link
@@ -573,7 +605,7 @@ function addLoadEvent(func) {
     var oldonload = window.onload;
     if (typeof window.onload != 'function') {
         window.onload = func;
-        
+
     } else {
         window.onload = function() {
             oldonload();
