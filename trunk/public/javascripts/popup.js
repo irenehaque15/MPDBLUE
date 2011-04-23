@@ -316,14 +316,16 @@ function showLightbox(objLink) {
                 document.getElementsByClassName("nextButton")[0].name = objLightbox.portfolioArr;
                 document.getElementsByClassName("backButton")[0].id = objLightbox.prevPortfolio;
                 document.getElementsByClassName("backButton")[0].name = objLightbox.portfolioArr;
-                if (objLoadingImage) {
-                    objLoadingImage.style.display = 'none';
-                }
 
                 objLightbox.style.display = 'block';
 
             } else {
-                alert("Error occurred connecting to server.");
+                alert("Error occurred while connecting to server.");
+                hideLightbox();
+            }
+            
+            if (objLoadingImage) {
+                objLoadingImage.style.display = 'none';
             }
         }
     }

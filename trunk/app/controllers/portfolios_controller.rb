@@ -25,6 +25,8 @@ class PortfoliosController < ApplicationController
 		if params[:portfolio]
 			@portfolio.contact_link = params[:portfolio][:contact_link]
 			@portfolio.name = params[:portfolio][:name]
+			@portfolio.save
+			redirect_to  '/admin/portfolios'
 		end
 		if params[:status]
 			@admin = Admin.find(1)
@@ -42,10 +44,9 @@ class PortfoliosController < ApplicationController
 				@students = @team.students
 				#OpenMailer.deliver_open(@admin,@portfolio)
 			end
-
+			@portfolio.save
+			redirect_to  '/admin/portfolios'
 		end
-		@portfolio.save
-		redirect_to  '/admin/portfolios'
 	end
 end
 
