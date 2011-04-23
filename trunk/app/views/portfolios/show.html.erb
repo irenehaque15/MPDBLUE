@@ -9,23 +9,27 @@
               <%= image_tag @portfolio.images.first.path, :class => "imgtag-title" %>
           <% end %>
           <div class="portfolio-name">
-              <%= @portfolio.name %>
+		  <%= @portfolio.name %>
+		  <br/>
+		  <br/>
           </div>
-          <div class="portfolio-link">
-              <%= @portfolio.contact_link %>
+          <div style="font-size: 25px;  color: grey;    text-align: center;">
+		  <%= @portfolio.contact_link %>
           </div>
-          <% if @portfolio.documents.first %>
-              <div class="portfolio-doc">
-                  <%= link_to "Executive Summary", @portfolio.documents.first.path, :style=> "font-size:20px; color:grey;" %>
-              </div>
-          <% end %>
+	          <div class="portfolio-link" style="margin-top: 125px;">
+			  <% if @portfolio.documents.first %>
+				  Executive Summary
+				  <br/>
+        	         	 <%= link_to image_tag("button_download_pdf.png"), @portfolio.documents.first.path %>
+		          <% end %>
+        	  </div>
       </div>
 
       <div style="float:left; width:650px; height:97%;">
           <%= content_tag :div, :id => 'mainPortfolioImg', :class => "thumbwrapper-main" do %>
               <%= image_tag @portfolio.images.first.path, :class => "imgtag-main" %>
           <% end %>
-          <div id="mainPortfolioImgCaption" style="height:20%; text-align:justify; font-size:15px; color:grey; margin-left:8px; margin-right:25px; margin-top: 8px; overflow:auto; float:left; padding:7px; background-color: lightgrey; width:585px;">
+          <div id="mainPortfolioImgCaption" style="height:20%; text-align:justify; font-size:22px; color:grey; margin-left:8px; margin-right:25px; margin-top: 8px; overflow:hidden; float:left; padding:7px; background-color: lightgrey; width:585px;">
               <%=  @portfolio.images.first.caption %>
           </div>
       </div>
