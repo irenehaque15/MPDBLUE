@@ -18,7 +18,7 @@
 						<ul class = "links primary-links">
 							<li class="menu-522 first <%= home?%>"><%= link_to "HOME", "/", :class=> home? %></li>
 							<% if user? == 'false' %>
-								<li class="menu-522 last <%= current_class?("/login") %>"><%= link_to "LOGIN", "/login" , :class=> current_class?("/login")%></li>
+								<li class="menu-522 last <%= current_class?("/login") %>"><%= link_to "ADMIN", "/login" , :class=> current_class?("/login")%></li>
 							<% elsif user? == 'true' %>
 								<li class="menu-522 <%= current_class?("/admin/portfolios") %>"><%= link_to "manage portfolios", "/admin/portfolios", :class=> current_class?("/admin/portfolios")%></li>
 								<li class="menu-522 <%= current_class?("/admin/users") %>"><%= link_to "manage users", "/admin/users", :class=> current_class?("/admin/users")%></li>
