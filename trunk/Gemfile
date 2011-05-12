@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.4'
+gem 'rails', '3.0.5'
 
 #Upload image functionality
 gem 's3_swf_upload', :git => 'git://github.com/nathancolgate/s3-swf-upload-plugin'
@@ -10,7 +10,7 @@ gem 'aws-s3', :require => 'aws/s3'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
+gem 'sqlite3-ruby', :require => 'sqlite3'
 
 # Use unicorn as the web server
 # gem 'unicorn'
